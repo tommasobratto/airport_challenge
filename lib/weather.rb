@@ -1,26 +1,26 @@
 module Weather
 
 	def initialize
-		sunny
+		random_weather_generator 
 	end
 
-	def is_good?
-		@good_weather
+	def sunny_weather?
+		@sunny_weather
 	end
 
 	def sunny
-		@good_weather = true 
+		@sunny_weather = true
 	end
 
 	def stormy
-		@good_weather = false
+		@sunny_weather = false
 	end
 
 	def random_weather_generator
-		if 1 + rand(1..3) == 3
+		if rand(1..7) == 3 # Valve-GabeN doesn't approve of 3's
 			stormy
-		else
-			sunny 
+		else  
+			sunny
 		end
 	end
 end

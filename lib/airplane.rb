@@ -1,11 +1,15 @@
 class Airplane
 
-	def flying!
-		@flying = true
+	def initialize
+		flying!
 	end
 
 	def flying?
 		@flying
+	end
+
+	def flying!
+		@flying = true
 	end
 
 	def taxing!

@@ -1,50 +1,24 @@
 require 'airport'
+require 'airplane'
+
+# Notice: The rspec file contains no working tests because most of the testing was done in 'irb'.
+# The code works (at least for the tests I listed in 'test.rb'),
+# but I still need to add the necessary rspec tests.
 
 describe Airport do
-
-	let (:airport) { Airport.new }
-	let (:good_weather) { double :weather, sunny: true, stormy: false, is_good?: true}
-	let (:bad_weather)  { double :weather, stormy: true, sunny: false, is_good?: false}
-	let (:flying_airplane)     { double :airplane, flying!: true, flying?: true}
-	let (:taxing_airplane)     { double :airplane, taxing!: true, flying?: false}
-
-	context "control tower" do
-
-		it "should check for weather" do 
-			good_weather.is_good?
-			airport.check_for_good_weather(good_weather)
-			expect(airport.safe_conditions?).to eq true
-		end
-
-		it "should check for a plane's flying status" do
-			flying_airplane.flying?
-			expect(airport.radio_call_plane(flying_airplane)).to be true
-		end
-
-	end
-
-	context "take off and landing procedures" do
-
-		it "should allow planes to take off in sunny weather" do
-			good_weather.is_good?
-			taxing_airplane.flying?
-			airport.store(taxing_airplane)
-			airport.check_for_good_weather(good_weather)
-			airport.radio_call_plane(taxing_airplane)
-			airport.allow_take_off(taxing_airplane)
-			expect(airport.hangar.count).to eq(0)
-		end
-
-		it "should allow planes to land in sunny wheater" do
-
-		end
-
-		it "should not allow planes to take off in stormy weather" do
 	
+	let(:airport) 			 { Airport.new 									 																}
+	let(:taxing_plane)   { double :plane, flying?: false, flying!: true, taxing!: false }
+	let(:flying_plane)   { double :plane, flying?: true, taxing!: false, flying!: true  }
+
+	context 'take off and landing procedures' do
+
+		it 'should allow planes to land' do
+		
 		end
 
-		it "should not allow planes to land in stormy weather" do
+		it 'should allow planes to take off' do
 
-  	end
-  end
+	 	end
+	end	
 end
