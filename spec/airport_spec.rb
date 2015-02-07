@@ -10,7 +10,7 @@ describe Airport do
 
 	context "control tower" do
 
-		it "should check for weather" do # this isn't working
+		it "should check for weather" do 
 			good_weather.is_good?
 			airport.check_for_good_weather(good_weather)
 			expect(airport.safe_conditions?).to eq true
