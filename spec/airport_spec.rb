@@ -13,14 +13,6 @@ describe Airport do
 
 	context 'control tower' do
 
-    it 'should be able to store planes in the hangar' do
-
-    end
-
-    it 'should be able to release planes from the hangar' do
-
-    end
-
     it 'should be able to check if an airplane is flying' do
 
     end
