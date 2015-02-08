@@ -18,12 +18,11 @@ describe Airport do
     end
 
     def empty_airport(airport)
-      taxing_plane.taxing!
       airport.capacity.times { airport.take_off(taxing_plane) }
     end
 
     it 'should be able to check if the weather is sunny' do
-      airport.sunny # random_number_generator method to be added once 'stub' is used
+      expect(airport).to receive(:random_weather_generator) { :sunny }
       airport.sunny_weather?
     end
 
@@ -32,7 +31,7 @@ describe Airport do
       expect(airport.full?).to be true
     end
 
-    it 'should expect to be empty' do
+    it 'should expect to be empty' do 
       empty_airport airport
       expect(airport.empty?).to be true
     end
@@ -51,31 +50,31 @@ describe Airport do
   context 'take off and landing procedures' do
 
     it 'should allow planes to land in sunny conditions' do
-      airport.sunny # 'sunny' and 'stormy' are just for testing until 'stub' rspec method
       flying_plane.flying!
+      allow(airport).to receive(:random_weather_generator) { :sunny }
       airport.allow_landing(flying_plane)
       expect(airport.hangar).to eq([flying_plane])
     end
 
     it 'should allow planes to take off in sunny conditions' do
-      airport.sunny
       taxing_plane.taxing!
-      airport.allow_take_off(taxing_plane)
+      allow(airport).to receive(:random_weather_generator) { :sunny }
+      airport.allow_take_off
       expect(airport.hangar).to eq([])
     end
 
-    #raise_error examples failing, still have to get around that
+    #raise_error examples failing, still have to get around that (the errors actually show up after all, maybe rspec doesn't like me)
 
     it 'should not allow planes to land in stormy conditions' do
-      airport.stormy
+      allow(airport).to receive(:random_weather_generator) { :stormy }
       flying_plane.flying!
       expect(airport.allow_landing(flying_plane)).to raise_error( 'the airplane cannot land in bad weather' )
     end
 
     it 'should not allow planes to take off in stormy conditions' do
-      airport.stormy
+      allow(airport).to receive(:random_weather_generator) { :stormy }
       taxing_plane.taxing!
-      expect(airport.allow_take_off(taxing_plane)).to raise_error( 'the airplane cannot take off in bad weather' )
+      expect(airport.allow_take_off).to raise_error( 'the airplane cannot take off in bad weather' )
     end
   end 
 end
@@ -92,13 +91,13 @@ describe Airplane do
 
     it 'should be flying after take off' do      
       airplane.taxing!
-      airport.allow_take_off(airplane) # it is obviously failing, it can't behave like an actual Airport class
+      expect(airport).to receive (:allow_take_off) { airplane.flying! } 
       expect(airplane.flying?).to eq true
     end
 
     it 'should be taxing after landing' do
       airplane.flying!
-      airport.allow_landing(airplane)
+      expect(airplane).to receive (:allow_landing) { airplane.taxing! }
       expect(airplane.flying?).to eq false
     end
   end

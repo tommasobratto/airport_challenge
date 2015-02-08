@@ -4,18 +4,14 @@ class Airport
 
   include Weather
 
-  DEFAULT_CAPACITY = 6
+  attr_reader :capacity
+
+  def capacity
+    @capacity = 6
+  end
 
   def hangar
     @hangar ||= []
-  end
-
-  def capacity=(value)
-    @capacity = value
-  end
-
-  def capacity
-    @capacity ||= DEFAULT_CAPACITY
   end
 
   def take_off(plane)
@@ -42,7 +38,7 @@ class Airport
     end
   end
 
-  def allow_take_off(plane)
+  def allow_take_off
     if sunny_weather? == true
       hangar.each { |plane| taxi_to_runway(plane) }
     else 
@@ -63,6 +59,6 @@ class Airport
   end
 
   def empty?
-    hangar.count == 0
+    hangar.count == 0 
   end
 end

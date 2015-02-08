@@ -1,7 +1,7 @@
 module Weather
 
   def initialize
-    random_weather_generator 
+    sunny 
   end
 
   def sunny_weather?

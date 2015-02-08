@@ -6,7 +6,7 @@ require './lib/airplane.rb'
 # airport = Airport.new
 # airplane = Airplane.new
 #
-# - airport.sunny_weather? # initialized as 'true', now depends on the 'random_weather_generator' method
+# - airport.sunny_weather? # initialized as 'true'
 # - airplane.flying? # initialized as 'true'
 #
 # - airport.allow_landing(airplane)
@@ -34,7 +34,7 @@ require './lib/airplane.rb'
 # - airport.allow_landing # returns 'nil'
 # - airplane.flying? # still returns 'true'
 #
-# - airport.random_weather_generator # gives a different value ('true' or 'false') for the variable '@sunny_weather'
+# - airport.random_weather_generator # gives a randomly selected different value ('true' or 'false') for the variable '@sunny_weather'
 #
 #
 #
