@@ -6,12 +6,12 @@ require 'airplane'
 # but I still need to add the necessary rspec tests.
 
 describe Airport do
-	
-	let(:airport) 			 { Airport.new 									 																}
-	let(:taxing_plane)   { double :plane, flying?: false, flying!: true, taxing!: false }
-	let(:flying_plane)   { double :plane, flying?: true, taxing!: false, flying!: true  }
+  
+  let(:airport)        { Airport.new                                                  }
+  let(:taxing_plane)   { double :plane, flying?: false, flying!: true, taxing!: false }
+  let(:flying_plane)   { double :plane, flying?: true, taxing!: false, flying!: true  }
 
-	context 'control tower' do
+  context 'control tower' do
 
     def fill_airport(airport)
       airport.capacity.times { airport.landing(flying_plane) } # 'landing' and 'take_off' methods only used for testing here
@@ -50,34 +50,34 @@ describe Airport do
 
   context 'take off and landing procedures' do
 
-		it 'should allow planes to land in sunny conditions' do
-			airport.sunny # 'sunny' and 'stormy' are just for testing until 'stub' rspec method
+    it 'should allow planes to land in sunny conditions' do
+      airport.sunny # 'sunny' and 'stormy' are just for testing until 'stub' rspec method
       flying_plane.flying!
       airport.allow_landing(flying_plane)
       expect(airport.hangar).to eq([flying_plane])
-		end
+    end
 
-		it 'should allow planes to take off in sunny conditions' do
+    it 'should allow planes to take off in sunny conditions' do
       airport.sunny
       taxing_plane.taxing!
       airport.allow_take_off(taxing_plane)
       expect(airport.hangar).to eq([])
-	 	end
+    end
 
     #raise_error examples failing, still have to get around that
 
-	 	it 'should not allow planes to land in stormy conditions' do
+    it 'should not allow planes to land in stormy conditions' do
       airport.stormy
       flying_plane.flying!
       expect(airport.allow_landing(flying_plane)).to raise_error( 'the airplane cannot land in bad weather' )
-	 	end
+    end
 
-	 	it 'should not allow planes to take off in stormy conditions' do
+    it 'should not allow planes to take off in stormy conditions' do
       airport.stormy
       taxing_plane.taxing!
       expect(airport.allow_take_off(taxing_plane)).to raise_error( 'the airplane cannot take off in bad weather' )
-	 	end
-	end	
+    end
+  end 
 end
 
 describe Airplane do
@@ -85,21 +85,21 @@ describe Airplane do
   let(:airplane) { Airplane.new    }
   let(:airport)  { double :airport }
 
-	context 'airplane status' do
+  context 'airplane status' do
 
     # It needs a way to change the plane's status in the 'airport.allow-...' methods,
     # or we need to change the plane's behaviour (it's the plane that lands and takes off after all)
 
-		it 'should be flying after take off' do      
+    it 'should be flying after take off' do      
       airplane.taxing!
       airport.allow_take_off(airplane) # it is obviously failing, it can't behave like an actual Airport class
       expect(airplane.flying?).to eq true
-		end
+    end
 
-		it 'should be taxing after landing' do
+    it 'should be taxing after landing' do
       airplane.flying!
       airport.allow_landing(airplane)
       expect(airplane.flying?).to eq false
-		end
-	end
+    end
+  end
 end
