@@ -24,7 +24,7 @@ require './lib/airplane.rb'
 # 
 # - airport.sunny
 # - airplane.taxing! # this method used only for testing
-# - airport.store(airplane) # this method also used only for testing
+# - airport.take_off(plane) # this method also used only for testing
 # - airport.hangar # returns airplane with '@flying' instance variable returning 'false' in the array 'hangar'
 # - airport.allow_take_off(airplane) # returns an empty array
 # - airplane.flying? # returns 'true'
