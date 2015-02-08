@@ -1,9 +1,9 @@
 require 'airport'
 require 'airplane'
 
-# Notice: The rspec file contains no working tests because most of the testing was done in 'irb'.
+# Notice: The rspec file contains few working tests because most of the testing was done in 'irb'.
 # The code works (at least for the tests I listed in 'test.rb'),
-# but I still need to add the necessary rspec tests.
+# but I still need to make most of the tests pass.
 
 describe Airport do
   
