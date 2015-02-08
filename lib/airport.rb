@@ -19,11 +19,13 @@ class Airport
 	end
 
 	def take_off(plane)
+		raise 'Hangar is empty' if empty?
 		plane.flying!
 		hangar.delete(plane)
 	end
 
 	def landing(plane)
+		raise 'Hangar is full' if full?
 		plane.taxing!
 		hangar << plane
 	end
@@ -44,7 +46,7 @@ class Airport
 		if sunny_weather? == true
 			hangar.each { |plane| taxi_to_runway(plane) }
 		else 
-			p 'the airplane cannot take off in bad weather'
+			raise 'the airplane cannot take off in bad weather'
 		end
 	end
 
@@ -52,11 +54,15 @@ class Airport
 		if sunny_weather? == true
 			taxi_to_stop(plane)
 		else
-			p 'the airplane cannot land in bad weather'
+			raise 'the airplane cannot land in bad weather'
 		end
 	end
 
 	def full?
-
+		hangar.count == capacity
 	end
+
+	def empty?
+    hangar.count == 0
+  end
 end
