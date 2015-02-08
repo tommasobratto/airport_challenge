@@ -11,23 +11,26 @@ describe Airport do
 	let(:taxing_plane)   { double :plane, flying?: false, flying!: true, taxing!: false }
 	let(:flying_plane)   { double :plane, flying?: true, taxing!: false, flying!: true  }
 
-	context 'take off and landing procedures' do
+	context 'control tower' do
 
-		it 'should be able to store planes in the hangar' do
+    it 'should be able to store planes in the hangar' do
 
-		end
+    end
 
-		it 'should be able to release planes from the hangar' do
+    it 'should be able to release planes from the hangar' do
 
-		end
+    end
 
-		it 'should be able to check if an airplane is flying' do
+    it 'should be able to check if an airplane is flying' do
 
-		end
+    end
 
-		it 'should be able to check if the weather is sunny' do
+    it 'should be able to check if the weather is sunny' do
 
-		end
+    end
+  end
+
+  context 'take off and landing procedures' do
 
 		it 'should allow planes to land in sunny conditions' do
 			
