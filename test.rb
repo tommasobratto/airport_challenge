@@ -13,7 +13,7 @@ require './lib/airplane.rb'
 # - airport.hangar # checks to see if the airplane is in the array 'hangar'
 # - airplane.flying? # checks if the airplane now stored in the array returns 'false' if method 'flying?' is passed
 #
-# - airport.allow_take_off(airplane)
+# - airport.allow_take_off
 # - airport.hangar # it should now return an empty array
 # - airplane.flying? # it should now return 'true'
 #
@@ -26,15 +26,16 @@ require './lib/airplane.rb'
 # - airplane.taxing! # this method used only for testing
 # - airport.take_off(plane) # this method also used only for testing
 # - airport.hangar # returns airplane with '@flying' instance variable returning 'false' in the array 'hangar'
-# - airport.allow_take_off(airplane) # returns an empty array
+# - airport.allow_take_off # returns an empty array
 # - airplane.flying? # returns 'true'
 # 
 # - airport.stormy
 # - airplane.flying? # initialized as 'true'
-# - airport.allow_landing # returns 'nil'
+# - airport.allow_landing(airplane) # returns 'nil'
 # - airplane.flying? # still returns 'true'
 #
 # - airport.random_weather_generator # gives a randomly selected different value ('true' or 'false') for the variable '@sunny_weather'
 #
-#
+# - NOTE: the method airport.take_off acts funny when the array contains more than one Airplane class object. It only "allows take off" 
+#         for a plane every two-three planes in the array. I'm impressed.
 #
