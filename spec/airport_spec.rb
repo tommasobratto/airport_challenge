@@ -13,12 +13,47 @@ describe Airport do
 
 	context 'take off and landing procedures' do
 
-		it 'should allow planes to land' do
-		
+		it 'should be able to store planes in the hangar' do
+
 		end
 
-		it 'should allow planes to take off' do
+		it 'should be able to release planes from the hangar' do
+
+		end
+
+		it 'should be able to check if an airplane is flying' do
+
+		end
+
+		it 'should be able to check if the weather is sunny' do
+
+		end
+
+		it 'should allow planes to land in sunny conditions' do
+			
+		end
+
+		it 'should allow planes to take off in sunny conditions' do
+
+	 	end
+
+	 	it 'should not allow planes to land in stormy conditions' do
+
+	 	end
+
+	 	it 'should not allow planes to take off in stormy conditions' do
 
 	 	end
 	end	
+
+	context 'airplane status'
+
+		it 'can be flying' do
+
+		end
+
+		it 'can be taxing' do
+
+		end
+	end
 end
