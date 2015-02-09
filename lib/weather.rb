@@ -1,7 +1,7 @@
 module Weather
 
   def initialize
-    sunny 
+    random_weather_generator
   end
 
   def sunny_weather?
@@ -17,7 +17,7 @@ module Weather
   end
 
   def random_weather_generator
-    if rand(1..7) == 3 
+    if rand(7) == 3 
       stormy
     else  
       sunny
