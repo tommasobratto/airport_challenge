@@ -13,12 +13,12 @@ describe Airport do
 
     it 'should be able to return sunny weather' do
       expect(airport).to receive(:random_weather) { 5 }
-      expect(airport.sunny_weather?).to eq(true)
+      expect(airport.check_weather?).to eq(true)
     end
 
     it 'should be able to return stormy weather' do
       expect(airport).to receive(:random_weather) { 3 }
-      expect(airport.sunny_weather?).to eq(false)
+      expect(airport.check_weather?).to eq(false)
     end
   end
 
