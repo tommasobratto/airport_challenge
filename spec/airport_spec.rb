@@ -1,7 +1,4 @@
-require 'airport'
-# Notice: The rspec file contains few working tests because most of the testing was done in 'irb'.
-# The code works (at least for the tests I listed in 'test.rb'),
-# but I still need to make most of the tests pass.
+require 'airport' 
 
 describe Airport do 
   
