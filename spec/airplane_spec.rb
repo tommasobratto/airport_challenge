@@ -6,10 +6,7 @@ describe Airplane do
   let(:airport)  { double :airport }
 
   context 'airplane status' do
-
-    # It needs a way to change the plane's status in the 'airport.allow-...' methods,
-    # or we need to change the plane's behaviour (it's the plane that lands and takes off after all)
-
+    
     it 'should be flying after take off' do  
       airplane.flying!
       expect(airplane.flying?).to eq true
