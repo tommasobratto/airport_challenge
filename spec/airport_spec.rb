@@ -12,28 +12,23 @@ describe Airport do
   context 'control tower' do
 
     def fill_airport(airport)
-      airport.capacity.times { airport.landing(flying_plane) } # 'landing' and 'take_off' methods only used for testing here
+      airport.capacity.times { airport.landing(flying_plane) } # 'landing' method only used for testing here
     end
 
     it 'should be able to check if the weather is sunny' do
-      expect(airport).to receive(:random_weather_generator).and_return(:sunny)
-      airport.sunny_weather?
+      allow(airport).to receive(:random_weather_generator) { :sunny }
+      expect(airport.sunny_weather?).to eq true
     end
 
     it 'should expect to be full' do
       fill_airport airport
       expect(airport.full?).to be true
     end
-    
-    it 'should raise an error when the hangar is full and a plane tries to land' do
-      expect(airport.allow_landing(flying_plane)).to raise_error( 'Hangar is full' )
-      fill_airport airport
-    end
 
-    it 'should raise an error when the hangar is empty and a plane tries to take off' do
-      expect(airport.allow_take_off).to raise_error( 'Hangar is empty' )
-      empty_airport airport
-    end 
+    it 'should raise an error when the hangar is full and a plane tries to land' do
+      fill_airport airport
+      expect(airport.allow_landing(flying_plane)).to raise_error( 'Hangar is full' )
+    end
   end
 
   context 'take off and landing procedures' do
