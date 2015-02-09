@@ -1,6 +1,9 @@
 require './lib/airport.rb'
 require './lib/airplane.rb'
 
+#
+# =================================================
+#
 # tests on 'irb':
 #
 # airport = Airport.new
@@ -35,7 +38,4 @@ require './lib/airplane.rb'
 # - airplane.flying? # still returns 'true'
 #
 # - airport.random_weather_generator # gives a randomly selected different value ('true' or 'false') for the variable '@sunny_weather'
-#
-# - NOTE: the method airport.take_off acts funny when the array contains more than one Airplane class object. It only "allows take off" 
-#         for a plane every two-three planes in the array. I'm impressed.
 #

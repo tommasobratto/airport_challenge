@@ -1,8 +1,8 @@
 module Weather
 
   def initialize
-    random_weather
-    check_weather?
+    weather_forecast
+    check_sunny_weather?
   end
 
   def sunny
@@ -13,7 +13,11 @@ module Weather
     @sunny_weather = false
   end
 
-  def check_weather?
+  def check_sunny_weather?
+    @sunny_weather
+  end
+
+  def weather_forecast
     if random_weather != 3
       sunny
     else
@@ -22,6 +26,6 @@ module Weather
   end
 
   def random_weather
-    rand(5)
+    @random_weather = rand(6)
   end
 end
