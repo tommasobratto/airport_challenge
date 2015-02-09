@@ -27,8 +27,8 @@ describe Airport do
 
     it 'should raise an error when the hangar is full and a plane tries to land' do
       fill_airport airport
-      expect(airport.allow_landing(flying_plane)).to raise_error( 'Hangar is full' )
-    end
+      expect{ airport.allow_landing(flying_plane) }.to raise_error( 'Hangar is full' )
+    end   
   end
 
   context 'take off and landing procedures' do
@@ -50,15 +50,15 @@ describe Airport do
     #raise_error examples failing, still have to get around that (the errors actually show up after all)
 
     it 'should not allow planes to land in stormy conditions' do
-      allow(airport).to receive(:random_weather_generator) { :stormy }
       flying_plane.flying!
-      expect(airport.allow_landing(flying_plane)).to raise_error( 'the airplane cannot land in bad weather' )
+      allow(airport).to receive(:random_weather_generator) { :stormy }
+      expect{ airport.allow_landing(flying_plane) }.to raise_error( 'the airplane cannot land in bad weather' )
     end
 
     it 'should not allow planes to take off in stormy conditions' do
       allow(airport).to receive(:random_weather_generator) { :stormy }
       taxing_plane.taxing!
-      expect(airport.allow_take_off).to raise_error( 'the airplane cannot take off in bad weather' )
+      expect{ airport.allow_take_off }.to raise_error( 'the airplane cannot take off in bad weather' )
     end
   end 
 end
