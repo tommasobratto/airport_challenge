@@ -1,27 +1,15 @@
 module Weather
 
   def initialize
-    weather_forecast
-    check_sunny_weather?
+    random_weather
+    sunny_weather?
   end
 
-  def sunny
-    @sunny_weather = true
-  end
-
-  def stormy
-    @sunny_weather = false
-  end
-
-  def check_sunny_weather?
-    @sunny_weather
-  end
-
-  def weather_forecast
+  def sunny_weather?
     if random_weather != 3
-      sunny
+      true
     else
-      stormy
+      false
     end
   end
 

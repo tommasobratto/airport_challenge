@@ -4,8 +4,7 @@ class Airport
 
   include Weather
 
-  attr_reader :hangar
-  attr_reader :capacity
+  attr_reader :hangar, :capacity
 
   def hangar
     @hangar ||= []
@@ -15,32 +14,28 @@ class Airport
     @capacity = 6
   end 
 
-  def allow_take_off
-    if check_sunny_weather? == true
-      hangar.each { |plane| taxi_to_runway(plane) }
+  def allow_take_off(plane)
+    if sunny_weather? == true
+      taxi_to_runway(plane)
     else
       p "the airplane/airplanes cannot take off in bad weather"
     end
   end
 
   def allow_landing(plane)
-    if check_sunny_weather? == true
+    if sunny_weather? == true
       taxi_to_stop(plane)
     else
       p "the airplane cannot land in bad weather"
     end
   end
 
-   def taxi_to_runway(plane) 
-    if plane.flying? == false
-      take_off(plane)
-    end
+  def taxi_to_runway(plane) 
+    take_off(plane) if plane.flying? == false
   end
 
   def taxi_to_stop(plane)
-    if plane.flying? == true
-      landing(plane)
-    end
+    landing(plane) if plane.flying? == true
   end
 
   def take_off(plane)

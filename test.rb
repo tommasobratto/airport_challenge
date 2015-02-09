@@ -16,7 +16,7 @@ require './lib/airplane.rb'
 # - airport.hangar # checks to see if the airplane is in the array 'hangar'
 # - airplane.flying? # checks if the airplane now stored in the array returns 'false' if method 'flying?' is passed
 #
-# - airport.allow_take_off
+# - airport.allow_take_off(plane)
 # - airport.hangar # it should now return an empty array
 # - airplane.flying? # it should now return 'true'
 #
@@ -29,7 +29,7 @@ require './lib/airplane.rb'
 # - airplane.taxing! # this method used only for testing
 # - airport.take_off(plane) # this method also used only for testing
 # - airport.hangar # returns airplane with '@flying' instance variable returning 'false' in the array 'hangar'
-# - airport.allow_take_off # returns an empty array
+# - airport.allow_take_off(plane) # returns an empty array
 # - airplane.flying? # returns 'true'
 # 
 # - airport.stormy
