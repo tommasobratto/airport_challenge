@@ -9,15 +9,23 @@ describe Airport do
   let(:taxing_plane)   { double :plane, flying?: false, flying!: true, taxing!: false }
   let(:flying_plane)   { double :plane, flying?: true, taxing!: false, flying!: true  }
 
+  context 'weather control' do
+
+    it 'should be able to return sunny weather' do
+      expect(airport).to receive(:random_weather) { 5 }
+      expect(airport.sunny_weather?).to eq(true)
+    end
+
+    it 'should be able to return stormy weather' do
+      expect(airport).to receive(:random_weather) { 3 }
+      expect(airport.sunny_weather?).to eq(false)
+    end
+  end
+
   context 'control tower' do
 
     def fill_airport(airport)
       airport.capacity.times { airport.landing(flying_plane) } # 'landing' method only used for testing here
-    end
-
-    it 'should be able to check if the weather is sunny' do
-      airport.sunny
-      expect(airport.sunny_weather?).to eq true
     end
 
     it 'should expect to be full' do
@@ -27,7 +35,7 @@ describe Airport do
 
     it 'should raise an error when the hangar is full and a plane tries to land' do
       fill_airport airport
-      airport.sunny
+      expect(airport).to receive(:random_weather) { 5 }
       expect{ airport.allow_landing(flying_plane) }.to raise_error( 'Hangar is full' )
     end   
   end
@@ -36,27 +44,27 @@ describe Airport do
 
     it 'should allow planes to land in sunny conditions' do
       flying_plane.flying!
-      airport.sunny
+      expect(airport).to receive(:random_weather) { 5 }
       airport.allow_landing(flying_plane)
       expect(airport.hangar).to eq([flying_plane])
     end
 
     it 'should allow planes to take off in sunny conditions' do
       taxing_plane.taxing!
-      airport.sunny
+      expect(airport).to receive(:random_weather) { 5 }
       airport.allow_take_off(taxing_plane)
       expect(airport.hangar).to eq([])
     end
 
     it 'should not allow planes to land in stormy conditions' do
       flying_plane.flying!
-      airport.stormy
+      expect(airport).to receive(:random_weather) { 3 }
       expect(airport.allow_landing(flying_plane)).to eq( 'the airplane cannot land in bad weather' )
     end
 
     it 'should not allow planes to take off in stormy conditions' do
       taxing_plane.taxing!
-      airport.stormy
+      expect(airport).to receive(:random_weather) { 3 }
       expect(airport.allow_take_off(taxing_plane)).to eq( 'the airplane cannot take off in bad weather' )
     end
   end 
