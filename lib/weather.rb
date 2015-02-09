@@ -17,7 +17,7 @@ module Weather
   end
 
   def random_weather_generator
-    if rand(1..7) == 3 # Valve-GabeN doesn't approve of 3's
+    if rand(1..7) == 3 
       stormy
     else  
       sunny

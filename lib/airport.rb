@@ -5,17 +5,17 @@ class Airport
   include Weather
 
   attr_reader :capacity
+  attr_reader :hangar
 
   def capacity
     @capacity = 6
-  end
+  end 
 
   def hangar
     @hangar ||= []
   end
 
   def take_off(plane)
-    raise 'Hangar is empty' if empty?
     plane.flying!
     hangar.delete(plane)
   end
@@ -56,9 +56,5 @@ class Airport
 
   def full?
     hangar.count == capacity
-  end
-
-  def empty?
-    hangar.count == 0 
   end
 end
